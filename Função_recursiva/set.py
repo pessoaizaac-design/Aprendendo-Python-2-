@@ -61,3 +61,24 @@ except Exception as erro:
     print(f'Ocorreu um erro inesperado: {erro}')
 
 
+def termo_igual(lista):
+    termos_iguais = set()
+    
+    for termo in lista:
+        if termo in lista:
+            return True
+        else:
+            termos_iguais.add(termo)
+    return False
+
+print('=' * 65)
+
+amigos_joao = ["Ana", "Bruno", "Carlos", "Diego"]
+amigos_maria = ["Carlos", "Diego", "Eduarda", "Fabio"]
+print(set(amigos_joao) & (set(amigos_maria)))
+
+print('=' * 65)
+
+convidados = ["Ana", "Bruno", "Carlos", "Diego"]
+pagaram = ["Ana", "Carlos"]
+print(set(convidados) - set(pagaram))
