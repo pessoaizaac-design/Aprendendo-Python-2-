@@ -43,6 +43,19 @@ def cll_imps(valor, **kwargs):
 
 print(cll_imps(1000, perc_ir=0.275, perc_iss=0.05, perc_csll=0.0375, perc_pis=0.03))
 
+def analisar_pedido(*args, **kwargs):
+    total_a_pagar = 0
+    for v in args:
+        print(f'Você pediu os seguintes itens: {v}')
+    for n in kwargs.values():
+        total_a_pagar += n
+    print(f'Você devera pagar um total de {total_a_pagar} R$')
+
+
+analisar_pedido('Mouse', 'Teclado', 'Headset', Mouse=80, Teclado=150, Headset=200, Frete=20)
+
+
+
 
 
 
