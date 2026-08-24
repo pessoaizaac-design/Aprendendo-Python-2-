@@ -1,148 +1,165 @@
 from functools import reduce
 from pprint import pprint
+import time
 
 # Map
 
 print('Desafio 1 Map')
-valores = [10, 25, 50, 100, 200]
+produtos = [
+    {"nome": "Mouse", "preco": 80},
+    {"nome": "Teclado", "preco": 150},
+    {"nome": "Monitor", "preco": 900},
+    {"nome": "Headset", "preco": 250}
+]
 
-novos_valores = list(map(lambda p: p * 0.10, valores))
-print(novos_valores) # Aplica 90% de desconto aos valores informados
-
-print('=' * 70)
-
-print('Desafio 2 Map') 
-numeros1 = [2, 5, 10, 15, 20]
-
-dobrar_valores = list(map(lambda x: x * 2, numeros1))
-print(dobrar_valores) # Dobra todosos números da lista acima
+quinze_desconto = list(map(lambda produto: produto['preco'] * 0.85, produtos))
+print(quinze_desconto)
 
 print('=' * 70)
 
-print('Desafio 3 Map')
-precos = [100, 250, 500, 1000]
+print('Desafio 2 Map')
+usuarios = [
+    ("Higor", 18),
+    ("Carlos", 22),
+    ("Ana", 17),
+    ("Pedro", 25)
+]
 
-desconto_precos = list(map(lambda d: d * 0.90, precos))
-print(desconto_precos) # Aplica 10% de desconto a todos os preços
+frase_user = list(map(lambda x: f'{x[0]} tem {x[1]} anos', usuarios)) # Lembrar da contagem de elementos da lista
+print(frase_user)
 
 print('=' * 70)
 
 # Filter
 
 print('Desafio 1 Filter')
-idades = [12, 17, 18, 21, 15, 30, 16, 25]
+usuarios2 = [
+    {"nome": "Higor", "idade": 18, "ativo": True},
+    {"nome": "Carlos", "idade": 15, "ativo": False},
+    {"nome": "Ana", "idade": 22, "ativo": True},
+    {"nome": "Pedro", "idade": 17, "ativo": True}
+]
 
-maiores = list(filter(lambda id: id >= 18, idades))
-print(maiores) # Separa os que ssão maiores de idade
+maior_de_idade = list(filter(lambda id: id['idade'] >= 18, usuarios2))
+print(maior_de_idade)
 
 print('=' * 70)
 
 print('Desafio 2 Filter')
-numeros2 = [3, 8, 11, 20, 25, 32, 41, 50]
+numeros = []
+for n in  range(0,101):
+    numeros.append(n)
 
-numeros_pares = list(filter(lambda p: p % 2 == 0, numeros2))
-print(numeros_pares) # Filtra os números pares da lista
+divisiveis_maiores = list(filter(lambda ns: ns % 3 == 0 and ns % 5 != 0 and ns > 20, numeros))
+print(divisiveis_maiores)
 
 print('=' * 70)
 
 # Reduce
 
 print('Desafio 1 Reduce')
-numeros3 = [5, 10, 15, 20]
+numeros2 = [15, 42, 7, 89, 34, 61, 3]
 
-total = reduce(lambda soma, valores: soma + valores, numeros3, 0 )
-print(total) # A soma de todos os valores
+maior_numero = reduce(lambda a, b: a if a > b else b, numeros2)
+print(maior_numero)
 
 print('=' * 70)
 
 print('Desafio 2 Reduce')
-precos2 = [29.90, 15.50, 100, 45.90]
+compras = [
+    {"produto": "Mouse", "preco": 80},
+    {"produto": "Teclado", "preco": 150},
+    {"produto": "Headset", "preco": 200},
+    {"produto": "Monitor", "preco": 900}
+]
 
-valor_a_pagar = reduce(lambda soma, valor: soma + valor, precos2, 0 )
-print(valor_a_pagar) # Retorna o valor correto
+total_a_pagar = reduce(lambda soma, preco: soma + preco['preco'], compras, 0)
+print(total_a_pagar)
+
+print('=' * 70)
+
+# Generator
+print('Desafio 1 Generator')
+def pares(limite):
+    for n in range(0, limite + 1):
+        if n % 2 == 0:
+            yield(n)
+
+gag = pares(10)
+for numeros in gag:
+    print(numeros)
+
+print('=' * 70)
+
+print('Desafio 2 Generator')
+def fibonacci_gen(limite):
+    a, b = 0, 1
+    for _ in range(limite):
+        yield a
+        a, b = b, a + b
+
+# Consumindo o gerador
+#for num in fibonacci_gen(10):
+    #print(num, end=" "\n)
 
 print('=' * 70)
 
 # Iteradores
 
 print('Desafio 1 Iteradores')
-nomes = ['Higor', 'João', 'Pedro', 'Lucas']
-nomes_atualizados = iter(nomes)
+nomes = ["Higor", "Ana", "Carlos", "Pedro"]
 
-print(hasattr(nomes_atualizados, '__next__')) # Retorna True
+nomes_atualizados = iter(nomes)
+print(next(nomes_atualizados))
 
 print('=' * 70)
 
 print('Desafio 2 Iteradores')
-numeros4 = [10, 20, 30, 40]
-numeros_atualizados = iter(numeros4)
+class Contador:
+    def __init__(self, limite):
+        self.limite = limite
+        self.numero = 0
 
-print(hasattr(numeros_atualizados, '__next__')) # Retorna True
+    def __iter__(self):
+        return self
 
-print('=' * 70)
+    def __next__(self):
+        if self.numero <= self.limite:
+            valor = self.numero
+            self.numero += 1
+            return valor
+        raise StopIteration
 
-# Generators
 
-print('Desafio 1 Generators')
+contador = Contador(5)
 
-def contagem():
-    for n in range(1, 6):
-        yield n
+for numero in contador:
+    print(numero)
 
-gerador = contagem()
-print(next(gerador))
-
-print('=' * 70)
-
-print('Desafio 2 Generators')
-
-def numeros_pares():
-    for v in range(0,21):
-        if v % 2 == 0:
-            yield v
-
-generator = numeros_pares()
-for n in generator:
-    pprint(n)
 
 print('=' * 70)
 
 # Decorator
 
-print('Desafio 1 Decorator')
-
-
-def contador(funcao):
-    s = 0
+print("Desafio 1 Decorator")
+def contagem_tempo(funcao):
     def wrapper():
-        nonlocal s
+        t1 = time.time()
         funcao()
-        s +=1
-        print(f'A função foi executada {s} vez(es)!')
+        t2 = time.time()
+        print(f'A duração foi de {t2 - t1:.6f} segundos')
     return wrapper
 
-@contador
-def ola():
-    print('Olá!')
+@contagem_tempo
+def soma():
+    total = 0
+    for i in range(1_000_000):
+        total += i
+    return total
 
-ola()
-ola()
-ola()
+print(soma())
 
-print('=' * 70)
 
-print('Desafio 2 Decorator')
 
-def mensagem(funcao):
-    def wrapper():
-        print('Iniciando função...')
-        funcao()
-        print('Função finalizada!')
-    return wrapper
 
-@mensagem
-def calculando():
-    print('Calculando...')
-
-gp = calculando()
-print(gp)
+        
