@@ -4,10 +4,12 @@ print('Exercício 1')
 nome = 'Higor'
 idade = 18
 altura = 1.67
+estudando_python = True
 
 print(type(nome))
 print(type(idade))
 print(type(altura))
+print(type(estudando_python))
 
 print('=' * 70)
 print('Exercício 2')
@@ -43,20 +45,20 @@ print('=' * 70)
 print('Exercício 5')
 nome = "Higor Pessoa"
 
-primeiro_caracter = print(nome[0])
-ultimo_caracter = print(nome[11])
-cinco_caracteres = print(nome[0:5])
-caracteres_invertidos = print(nome[::-1])
-quantidade_caracter = print(len(nome))
+print(nome[0])
+print(nome[-1])
+print(nome[0:5])
+print(nome[::-1])
+print(len(nome))
 
 print('=' * 70)
 print('Exercício 6')
 texto = "   Aprender Python é muito bom   "
 
-sem_espaco = print(texto.strip())
-maiusculo = print(texto.upper().strip())
-quantidade = print(len(texto))
-existencia = print('Python' in texto)
+print(texto.strip())
+print(texto.upper().strip())
+print(len(texto))
+print('Python' in texto)
 
 print('=' * 70)
 print('Exercício 7')
@@ -79,9 +81,9 @@ idade2 = 60
 
 if idade2 >=60:
     print('Você é idoso')
-elif idade2 >= 18 and idade2 <= 59:
+elif idade2 >= 18:
     print('Você é maior de idade')
-elif idade2 < 18 and idade2 > 12:
+elif idade2 < 18 and idade2 >= 12:
     print('Você é adolescente')
 elif idade2 < 12:
     print('Você é uma criança')
@@ -223,6 +225,8 @@ print('Exercício 23')
 for v in range(0,101):
     print(v)
 
+
+print('=' * 70)
 for x in range(0,101):
     if x % 2 ==0:
         print(x)
@@ -254,4 +258,75 @@ while True:
     except StopIteration:
       break
 
+print('=' * 70)
+print('Exercício 27') 
+tupla = (10, 25, 7, 42, 18)
+print(f'O primeiro elemento da tupla é --> {tupla[0]}')
+print(f'O último elemento da tupla é --> {tupla[-1]}')
+print(f'A quantidade de elemntos da tupla é: {len(tupla)}')
+print(f'O maior valor da tupla é: {max(tupla)}')
+print(f'O menor valor da tupla é: {min(tupla)}')
 
+
+print('=' * 70)
+print('Exercício 28')
+tupla2 = ("Higor", 18, "Python")
+nome, idade4, linguagem = tupla2
+print(nome)
+print(idade4)
+print(linguagem)
+
+print('=' * 70)
+print('Exercício 29')
+nomes = ["Ana", "João", "Carlos", "Maria"]
+
+for indice, elementos in enumerate(nomes):
+    print(f'{indice} --> {elementos}')
+
+print('=' * 70)
+print('Exercício 30')
+produtos = ["Mouse", "Teclado", "Monitor", "Headset", "Webcam"]
+for ind, prod in enumerate(produtos):
+    print(f'{ind} - {prod}')
+
+print('=' * 70)
+print('Exercício 31')
+try:
+    letras = "abc"
+    letras = int(letras)
+except ValueError:
+    print('Ocorreu um erro...')
+
+print('=' * 70)
+print('Exercício 32')
+try:
+    dividendo = 10
+    divisor = 0
+    divisao = dividendo / divisor
+except ZeroDivisionError:
+    print('Você não pode dividir um número por 0')
+
+print('=' * 70)
+print('Exercício 33')
+id2 = 18
+maior_menor = 'Maior de idade' if id2 >=18 else 'Menor de idade'
+print(maior_menor)
+
+print('=' * 70)
+print('Exercício 34')
+par_impar = 17
+par_ou_impar = 'Par' if par_impar % 2 == 0 else 'Ímpar'
+print(par_ou_impar)
+
+print('=' * 70)
+print('Exercício 35')
+valor = None
+print(valor is None)
+
+print('=' * 70)
+print('Exercício 36')
+nm = None
+if nm is None:
+    print('Nenhum nome foi encontrado')
+else:
+    print(f'{nm}')
