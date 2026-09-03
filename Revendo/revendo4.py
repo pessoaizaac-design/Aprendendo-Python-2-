@@ -126,3 +126,25 @@ print(money)
 
 #---------------------------------------------------------------------------
 
+# Adiando execução de funções
+print('Exercício 67')
+def executar(funcao):
+    def aguardar():
+        return funcao()
+    return aguardar
+def boas_vindas():
+    print('Olá, seja bem vindo(a)')
+
+produzir = executar(boas_vindas)
+
+#---------------------------------------------------------------------------
+
+print('Exercício 68')
+def saudacao(nome):
+    print(f'Olá, {nome}!')
+def adiar(func,nome):
+    def aguarde():
+        return func(nome)
+    return aguarde
+    
+funcao = adiar(saudacao,'Higor')
