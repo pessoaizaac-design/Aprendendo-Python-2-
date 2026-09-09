@@ -121,3 +121,72 @@ pares = Filtro(numeros, lambda x: x % 2 == 0)
 
 for numero in pares:
     print(numero)
+
+#------------------------------------------------------------------------------------------
+
+print('Exercício 6')
+def contar(n):
+    count = 1
+    while count <= n:
+        yield count
+        count +=1
+
+for numero in contar(5):
+    print(numero)
+
+#------------------------------------------------------------------------------------------
+
+print('Exercício 7')
+def pares(n):
+    count = 0
+    while count <= n:
+        if count % 2 == 0:
+            yield count
+        count +=1
+
+for numero in pares(10):
+    print(numero)
+
+#------------------------------------------------------------------------------------------
+
+print('Exercício 8')
+def quadrados(lista):
+    count = 0
+    while count <= len(lista) - 1:
+         yield lista[count] ** 2
+         count +=1
+
+numbers = [1, 2, 3, 4]
+for n in quadrados(numbers):
+    print(n)
+
+#------------------------------------------------------------------------------------------
+
+print('Exercício 9')
+def contador_infinito(inicio=1):
+    numero = inicio
+    while True:
+        yield numero
+        numero += 1
+
+# Inicializando o gerador
+numeros = contador_infinito()
+
+# Pegando os valores sob demanda com a função next()
+print(next(numeros))  # Saída: 1
+print(next(numeros))  # Saída: 2
+print(next(numeros))  # Saída: 3
+
+#------------------------------------------------------------------------------------------
+
+print('Exercício 10')
+def fibonacci(n):
+    count = 1
+    a, b = 0, 1
+    while count <= n:
+        yield a
+        a, b = b, a + b
+        count += 1
+
+for x in fibonacci(10):
+    print(x)
