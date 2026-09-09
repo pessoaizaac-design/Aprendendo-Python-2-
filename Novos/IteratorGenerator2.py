@@ -29,6 +29,7 @@ for num in nums:
 '''
 #-----------------------------------------------------------------------------------------
 
+'''
 class MyRange:
     def __init__(self, start, end):
         self.value = start
@@ -51,11 +52,16 @@ print(next(nums))
 print(next(nums))
 print(next(nums))
 print(next(nums))
-
+'''
 #-----------------------------------------------------------------------------------------
 
-# Generator
+# Generator = Iterator
+# pausa a fução e retorna o valor
+# use yield ao invés de return
+# você pode iterar sem carregar tudo na memória
+# yield = uma torneira gota
 
+'''
 def my_range(start,end):
     current = start
     while current < end:
@@ -68,4 +74,28 @@ print(next(num))
 print(next(num))
 print(next(num))
 print(next(num))
+'''
 
+
+# yield - torna o código mais eficiente e ocupa menos memória!
+
+'''
+def ler_csv(nome_arquivo):
+    for linha in open(nome_arquivo, "r"):
+        yield linha
+
+
+vendas = ler_csv("Novos/vendas.csv")
+print(vendas)
+'''
+
+def count_to(n):
+    count = 1
+    while count <= n:
+       yield count
+       count += 1
+       
+number = int(input("Escrece um número para contar: "))
+
+for n in count_to(number):
+    print(n)
