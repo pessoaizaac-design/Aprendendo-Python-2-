@@ -166,7 +166,7 @@ def primo(final):
 
 # Exemplo de uso:
 for n in primo(20):
-    print(n, end=" ")  # Saída: 2 3 5 7 11 13 17 19
+    print(n, end=" ")  
 
 
      
