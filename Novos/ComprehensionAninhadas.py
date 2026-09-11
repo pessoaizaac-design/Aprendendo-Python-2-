@@ -1,39 +1,38 @@
-# comprehensions aninhadas
+# comprehensions aninhadas - loops dentro de outros loops
 #-----------------------------------------------------------------------------------------
-letras = "AB"
-numeros = [1, 2, 3]
+'''
+linhas = int(input("Quanta linhas: "))
+colunas = int(input("Quantas columas: "))
+caracter = input("Informe o caracter a ser usado: ")
 
-combinacoes = [f"{letra}{numero}" for letra in letras for numero in numeros]
-print(combinacoes)
-# ['A1', 'A2', 'A3', 'B1', 'B2', 'B3']
+for i in range(linhas):
+    for j in range(colunas):
+        print(caracter, end="")
+    print()
+'''
 #-----------------------------------------------------------------------------------------
-matriz = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
 
-achatada = [numero for linha in matriz for numero in linha]
-print(achatada)
-# [1, 2, 3, 4, 5, 6, 7, 8, 9]
+caixas = [['Ovo 1, Ovo 2'], ['Ovo 3', 'Ovo 4'],['Ovo 5', 'Ovo 6']]
+
+loop_externo = []
+for caixa in caixas:
+    for ovo in caixa:
+        loop_externo.append(ovo)
+
+loop_interno = [ovo for caixa in caixas for ovo in caixa]
+print(loop_interno)
+
 #-----------------------------------------------------------------------------------------
-tabuada = [[i * j for j in range(1,11)] for i in range(1,11)]
-for linha in tabuada:
+
+tres_tres = [["Hello" for i in range(3)] for j in range(3)]
+for linha in tres_tres:
     print(linha)
-#-----------------------------------------------------------------------------------------
-matriz = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
 
-pares_achatados = [num for linha in matriz for num in linha if num % 2 == 0]
-print(pares_achatados)
-# [2, 4, 6, 8]
 #-----------------------------------------------------------------------------------------
 
-print('Teste 1')
-notas = [[7, 8, 5], [9, 10, 6], [4, 3, 8]]
-aprovados = [numero for linha in notas for numero in linha if numero >= 6]
-print(aprovados)
+numeros = [[2, 15, 17], [11, 5, 22], [8, 13, 1]]
+maiores_que_dez = [num for linha in numeros for num in linha if num > 10]
+print(maiores_que_dez)
 
-print('Teste 2')
-n = 4
-identidade = [[1 if i == j else 0 for j in range(n)]for i in range(n)]
+#-----------------------------------------------------------------------------------------
 
-print('Teste 3')
-palavras = ['Python', 'Java', 'Sql']
-letters = [[letra for letra in palavra] for palavra in palavras]
-print(letters)
